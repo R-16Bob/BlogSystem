@@ -19,8 +19,7 @@ public class PostServlet extends HttpServlet {
 		String title=request.getParameter("title");
 		String pcontent=request.getParameter("pcontent");
 		String opt=request.getParameter("opt");
-		User u=(User)request.getSession().getAttribute("user");
-		int uid=u.getUid();
+		int uid=Integer.valueOf(request.getSession().getAttribute("uid").toString());
 		PostDao pdao=new PostDao();
 		switch (opt) {
 		case "add":

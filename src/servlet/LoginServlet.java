@@ -27,9 +27,11 @@ public class LoginServlet extends HttpServlet {
 			uList=udao.queryUsersByType(1);
 			if(udao.verify(uname,upwd,uList)) {
 				request.getSession().removeAttribute("lerror");
-				//进入登录页面
-				request.getSession().setAttribute("user",udao.queryUserByuname(uname));
-				response.sendRedirect("user/userblog.jsp");
+				//进入登录页面,并设置Session属性uname、uid
+				User user=udao.queryUserByuname(uname);
+				request.getSession().setAttribute("uname",user.getUname());
+				request.getSession().setAttribute("uid",user.getUid());
+				response.sendRedirect("UserBlog?opt=queryAll");
 				return;
 			}
 			else {

@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -14,7 +15,7 @@
             overflow:visible !important;
         }
     </style>
-    <title>${user.uname}的博客管理</title>
+    <title>${uname}的博客管理</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -37,8 +38,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">我的博客</a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${user.uname}</a>
+                <li><a href="../UserBlog?opt=queryAll">我的博客</a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
 
                     <ul class="dropdown-menu">
                         <li><a href="../Login?opt=logout">退出登录</a></li>
