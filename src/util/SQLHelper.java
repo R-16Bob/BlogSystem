@@ -10,7 +10,7 @@ import java.util.List;
 
 public class SQLHelper {
 	private static String driver = "com.mysql.jdbc.Driver";
-	private static String url="jdbc:mysql://localhost:3306/online_invest",user="root",pwd="666"; 
+	private static String url="jdbc:mysql://localhost:3306/blog",user="root",pwd="666"; 
 
 	private static Connection conn=null;
 	static {
