@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.List,entity.Post" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -15,7 +15,7 @@
             overflow:visible !important;
         }
     </style>
-    <title>${otheruname}的博客</title>
+    <title>博客首页</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
     <div class="row">
 
         <div class="col-sm-11 col-sm-offset-1  main">
-            <h1 class="page-header">${otheruname}的博客</h1>
+            <h1 class="page-header">全部博文</h1>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -63,14 +63,18 @@
                         <th>id</th>
                         <th>主题</th>
                         <th>发表时间</th>
+                        <th>作者</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="post" items="${otherplist}">
+                    <%Post[] plist=(Post[])session.getAttribute("allplist");%>
+                    <c:forEach var="count" begin="0" end="<%=
+                    plist.length-1%>">
                     <tr>
-                        <td>${post.pid}</td>
-                        <td>${post.title}</td>
-                        <td>${post.created}</td>
+                        <td>${allplist[count].pid}</td>
+                        <td>${allplist[count].title}</td>
+                        <td>${allplist[count].created}</td>
+                        <td><a href="../Blog?uid=${allplist[count].uid}">${alluname[count]}</a></td>
                     </tr>
                     </c:forEach>
                     </tbody>

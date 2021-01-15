@@ -20,6 +20,11 @@ public class Test {
 		for(Post p:plist) {
 			System.out.println(p);
 		}*/
-		pdao.deletePostByPid(1);
+		//pdao.deletePostByPid(1);
+		/*System.out.println(udao.queryUnameByUid(2));*/
+		List<Post> plist=pdao.queryAllPosts();
+		for(Post p:plist) {
+			System.out.println(p);
+		}
 	}
 }

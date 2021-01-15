@@ -48,7 +48,6 @@ public class PostServlet extends HttpServlet {
 			response.sendRedirect("user/updatepost.jsp");
 			return;
 		}
-		System.out.println("hello");
 		
 	}
 

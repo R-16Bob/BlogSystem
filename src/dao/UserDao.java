@@ -65,6 +65,12 @@ public class UserDao {
    		 clist.add(u);
    	 }
    	 return clist.get(0);
-   
+	 }
+	//uid获得uname
+	public String queryUnameByUid(int uid) {
+		 List<User> clist=new ArrayList<User>();
+  	 String sql="select * from users where uid=?";
+  	 List<Object[]> cusarr=util.SQLHelper.executeQueryByParamsAsList(sql,uid);
+  	 return cusarr.get(0)[1].toString();
 	 }
 }

@@ -15,6 +15,10 @@ public class PostDao {
 	   	 String sql="select * from post where uid=?";
 	   	 return getPost(SQLHelper.executeQueryByParamsAsList(sql, uid));
 	   }
+	public List<Post> queryAllPosts(){	   	
+	   	 String sql="select * from post";
+	   	 return getPost(SQLHelper.executeQueryAsList(sql));
+	   }
 	public static List<Post> getPost(List<Object[]> list){
 		List<Post> dlist=new ArrayList<Post>();
 		for(Object[] arr:list) {
@@ -27,6 +31,27 @@ public class PostDao {
 			dlist.add(post);
 		}
 		return dlist;
+	}
+	//
+	public String[] queryUnamesByPlist(List<Post> plist){
+		String[] alluname=new String[plist.size()];
+		UserDao udao=new UserDao();
+		int i=0;
+		for(Post p:plist) {
+			String uname=udao.queryUnameByUid(p.getUid());
+			alluname[i]=uname;
+			i++;
+		}
+		return alluname;
+	}
+	public Post[] getArray(List<Post> plist) {
+		Post[] allplist=new Post[plist.size()];
+		int i=0;
+		for(Post p:plist) {
+			allplist[i]=p;
+			i++;
+		}
+		return allplist;
 	}
 	public int deletePostByPid(int pid) {
     	String sql="delete from post where pid=?";

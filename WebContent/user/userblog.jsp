@@ -34,11 +34,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">博客首页</a>
+            <a class="navbar-brand" href="../Index">博客首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-            <li><a href="blog.jsp">我的博客</a></li>
+            <li><a href="../Blog?uid=${uid}">我的博客</a></li>
                 <li><a href="../UserBlog?opt=queryAll">我的博客管理</a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
 
