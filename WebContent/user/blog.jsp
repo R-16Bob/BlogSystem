@@ -15,7 +15,7 @@
             overflow:visible !important;
         }
     </style>
-    <title>${uname}的博客管理</title>
+    <title>XXX的博客</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -34,14 +34,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">博客首页</a>
+            <a class="navbar-brand" href="#">首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-            <li><a href="blog.jsp">我的博客</a></li>
+                <li><a href="../UserBlog?opt=queryAll">我的博客</a></li>
                 <li><a href="../UserBlog?opt=queryAll">我的博客管理</a></li>
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
-
                     <ul class="dropdown-menu">
                         <li><a href="../Login?opt=logout">退出登录</a></li>
                         </li>
@@ -53,14 +52,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="addpost.jsp">发表文章<span class="sr-only">(current)</span></a></li>
-
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">我的博客管理</h1>
+        <div class="col-sm-11 col-sm-offset-1  main">
+            <h1 class="page-header">全部博文</h1>
 
 
             <div class="table-responsive">
@@ -70,27 +63,27 @@
                         <th>id</th>
                         <th>title</th>
                         <th>创建时间</th>
+                        <th>作者</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="post" items="${plist}">
                     <tr>
-                        <td>${post.pid}</td>
-                        <td>${post.title}</td>
-                        <td>${post.created}</td>
+                        <td>1</td>
+                        <td>上海市市民对垃圾分类知识认识情况调查</td>
+                        <td>2020-12-16 16:41:22</td>
                         <td>
-                            <a class="btn btn-primary" href="../Post?opt=edit&pid=${post.pid}" role="button" >修改</a>
+                            <a class="btn btn-primary" href="#" role="button" >创建人</a>
                         </td>
 
-                        <td>
-                            <a class="btn btn-warning" href="../Post?opt=delete&pid=${post.pid}" role="button" >删除</a>
-                        </td>
                         <td>
 
 
                         </td>
                     </tr>
-						</c:forEach>
+
                     </tbody>
                 </table>
             </div>

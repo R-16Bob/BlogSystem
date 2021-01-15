@@ -16,9 +16,10 @@ public class Test {
 		}*/
 		//System.out.println(udao.queryUserByuname("bob"));
 		PostDao pdao=new PostDao();
-		List<Post> plist=pdao.queryPostsByUid(2);
+		/*List<Post> plist=pdao.queryPostsByUid(2);
 		for(Post p:plist) {
 			System.out.println(p);
-		}
+		}*/
+		pdao.deletePostByPid(1);
 	}
 }

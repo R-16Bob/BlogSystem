@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>创建博文</title>
+    <title>编辑博文</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +62,8 @@ function cancel(){
     <div class="container">
 
       		<form action="../Post" name="fm" method="post">
-		<input type="hidden" name=opt value="add">
+		<input type="hidden" name=opt value="update">
+		<input type="hidden" name=pid value="${pid}">
 		<table width="100%" align="center"  class="table">
 				<tbody>
 					<tr>
@@ -70,7 +71,7 @@ function cancel(){
 					</tr>
 					<tr>
 						<td align="center">
-							<h2>创建博文</h2>
+							<h2>编辑博文</h2>
 						</td>
 					</tr>
 				</tbody>
@@ -82,7 +83,7 @@ function cancel(){
 					</td>
 					<td>
 						&nbsp;
-						<input type="text" name="title" style="width:350px" />
+						<input type="text" name="title" style="width:350px" value="${title}" />
 					</td>
 				</tr>
 				<tr>
@@ -91,7 +92,9 @@ function cancel(){
 					</td>
 					<td>
 						&nbsp;
-						<textarea name="pcontent" cols="120" rows="25" ></textarea>
+						<textarea name="pcontent" cols="120" rows="25" >${pcontent}
+						
+						</textarea>
 					</td>
 				</tr>
 
@@ -100,7 +103,7 @@ function cancel(){
 					</td>
 					<td>
 						&nbsp;
-						<input type='submit'    value=' 发     表 ' />
+						<input type='submit'    value=' 保     存 ' />
 						&nbsp;&nbsp;
 						<input type="button"   onclick="cancel()" value=" 取    消 " />
 					</td>

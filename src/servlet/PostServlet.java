@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.tomcat.util.collections.CaseInsensitiveKeyMap;
 
 import dao.PostDao;
+import entity.Post;
 import entity.User;
 
 
@@ -19,17 +20,36 @@ public class PostServlet extends HttpServlet {
 		String title=request.getParameter("title");
 		String pcontent=request.getParameter("pcontent");
 		String opt=request.getParameter("opt");
-		int uid=Integer.valueOf(request.getSession().getAttribute("uid").toString());
+		int uid=1,pid=0;
+		if(request.getSession().getAttribute("uid")!=null)
+			uid=Integer.valueOf(request.getSession().getAttribute("uid").toString());
+		if(request.getParameter("pid")!=null)
+			pid=Integer.valueOf(request.getParameter("pid").toString());
 		PostDao pdao=new PostDao();
 		switch (opt) {
 		case "add":
 			pdao.addPost(title, pcontent, uid);
-			response.sendRedirect("user/userblog.jsp");
-			break;
-		
+			response.sendRedirect("UserBlog?opt=queryAll");
+			return;
+		case "delete":
+			pdao.deletePostByPid(pid);
+			response.sendRedirect("UserBlog?opt=queryAll");
+			return;
+		case "update":
+			pdao.updatePost(pid, title, pcontent);
+			response.sendRedirect("UserBlog?opt=queryAll");
+			return;
+		case "edit":
+			//先跳到一个编辑页面
+			Post post=pdao.queryPostBypid(pid);
+			request.getSession().setAttribute("title", post.getTitle());
+			request.getSession().setAttribute("pcontent", post.getPcontent());
+			request.getSession().setAttribute("pid", post.getPid());
+			response.sendRedirect("user/updatepost.jsp");
+			return;
 		}
 		System.out.println("hello");
-
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

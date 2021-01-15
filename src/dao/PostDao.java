@@ -28,5 +28,16 @@ public class PostDao {
 		}
 		return dlist;
 	}
-		
+	public int deletePostByPid(int pid) {
+    	String sql="delete from post where pid=?";
+    	return SQLHelper.executeUpdateByParams(sql, pid);
+    }
+	public int updatePost(int pid,String title,String pcontent) {
+    	String sql="update post set title=?,pcontent=? where pid=?";
+    	return SQLHelper.executeUpdateByParams(sql, title,pcontent,pid);
+    }	
+	public Post queryPostBypid(int pid){	   	
+	   	 String sql="select * from post where pid=?";
+	   	 return getPost(SQLHelper.executeQueryByParamsAsList(sql, pid)).get(0);
+	   }
 }
