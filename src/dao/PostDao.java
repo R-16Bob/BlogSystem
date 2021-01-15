@@ -23,7 +23,7 @@ public class PostDao {
 			post.setTitle(arr[1].toString());
 			post.setPcontent(arr[2].toString());
 			post.setUid(Integer.valueOf(arr[4].toString()));
-			post.setCreated(arr[3].toString().substring(0,18));
+			post.setCreated(arr[3].toString().substring(0,16));
 			dlist.add(post);
 		}
 		return dlist;

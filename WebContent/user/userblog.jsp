@@ -69,17 +69,14 @@
                         <th>id</th>
                         <th>title</th>
                         <th>创建时间</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="post" items="${plist}">
                     <tr>
-                        <td>1</td>
-                        <td>上海市市民对垃圾分类知识认识情况调查</td>
-                        <td>2020-12-16 16:41:22</td>
+                        <td>${post.pid}</td>
+                        <td>${post.title}</td>
+                        <td>${post.created}</td>
                         <td>
                             <a class="btn btn-primary" href="#" role="button" >修改</a>
                         </td>
@@ -92,7 +89,7 @@
 
                         </td>
                     </tr>
-
+						</c:forEach>
                     </tbody>
                 </table>
             </div>
