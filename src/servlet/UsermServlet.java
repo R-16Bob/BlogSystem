@@ -20,6 +20,9 @@ public class UsermServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uname=request.getParameter("uname");
 		String opt=request.getParameter("opt");
+		int theuid=0;
+		if(request.getParameter("theuid")!=null)
+			theuid=Integer.valueOf(request.getParameter("theuid"));
 		UserDao udao=new UserDao();
 		switch (opt) {
 		case "query":
@@ -30,11 +33,22 @@ public class UsermServlet extends HttpServlet {
 			response.sendRedirect("admin/userm.jsp");
 			return;
 		case "delete":
-			int uid=Integer.valueOf(request.getParameter("uid"));
-			udao.deleteUsersByUid(uid);
+			udao.deleteUsersByUid(theuid);
 			response.sendRedirect("Userm?opt=query&uname=");
-		default:
-			break;
+			return;
+		case "edit":
+			String theuname=request.getParameter("theuname");
+			theuid=Integer.valueOf(request.getParameter("theuid"));
+			request.getSession().setAttribute("theuname",theuname);
+			request.getSession().setAttribute("theuid",theuid);
+			response.sendRedirect("admin/updatepwd.jsp");
+			return;
+		case "update":
+			theuid=Integer.valueOf(request.getParameter("theuid"));
+			String upwd=request.getParameter("upwd");
+			udao.updateUser(theuid, upwd);
+			response.sendRedirect("Userm?opt=query&uname=");
+			return;
 		}
 	}
 

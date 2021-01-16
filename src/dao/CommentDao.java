@@ -35,7 +35,7 @@ public class CommentDao {
     	return SQLHelper.executeUpdateByParams(sql,cid);
     }
 	public List<CommentView> queryCommentbyContent(String content){	   	
-	   	 String sql="select * from comment where ccontent like '%"+content+"%'";
-	   	 return getCommentView(SQLHelper.executeQueryByParamsAsList(sql,content));
+	   	 String sql="select * from commentView where ccontent like '%"+content+"%'";
+	   	 return getCommentView(SQLHelper.executeQueryAsList(sql));
 	   }
 }

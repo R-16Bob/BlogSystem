@@ -39,11 +39,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-
-                <ul class="dropdown-menu">
-                    <li><a href="#">退出登录</a></li>
-                    </li>
-                </ul>
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${admin}</a>        
+                            <ul class="dropdown-menu">
+                                <li><a href="../Login?opt=logout">退出后台</a></li>                          
+                            </ul>
+                            </li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="../Userm?opt=query&uname=">用户管理<span class="sr-only">(current)</span></a></li>
                 <li class="active1"><a href="../Postm?opt=query&title=">博文管理<span class="sr-only">(current)</span></a></li>
-                <li class="active1"><a href="#">评论管理<span class="sr-only">(current)</span></a></li>
+                <li class="active1"><a href="../Commentm?opt=query&ccontent=">评论管理<span class="sr-only">(current)</span></a></li>
 			</ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -84,10 +84,10 @@
                         <td>${user.upwd }</td>
 
                         <td>
-                            <a class="btn btn-success" href="#" role="button" >修改</a>
+                            <a class="btn btn-success" href="../Userm?opt=edit&theuid=${user.uid }&theuname=${user.uname}" role="button" >修改</a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="../Userm?opt=delete&uid=${user.uid }" role="button" >删除</a>
+                            <a class="btn btn-warning" href="../Userm?opt=delete&theuid=${user.uid }" role="button" >删除</a>
                         </td>
                         </tr>
                         </c:forEach>

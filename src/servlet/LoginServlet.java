@@ -45,6 +45,8 @@ public class LoginServlet extends HttpServlet {
 			if(udao.verify(uname,upwd,uList)) {
 				request.getSession().removeAttribute("aerror");
 				//进入管理后台页面
+				User user=udao.queryUserByuname(uname);
+				request.getSession().setAttribute("admin",user.getUname());
 				response.sendRedirect("Userm?opt=query&uname=");
 			}
 			else {
@@ -75,6 +77,7 @@ public class LoginServlet extends HttpServlet {
 		case "logout":
 			//退出登录
 			request.removeAttribute("user");
+			request.removeAttribute("admin");
 			response.sendRedirect("login.jsp");
 		}
 	}

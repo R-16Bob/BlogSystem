@@ -37,15 +37,13 @@
             </button>
             <a class="navbar-brand" href="#">博客系统管理后台</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-
-                <ul class="dropdown-menu">
-                    <li><a href="#">退出登录</a></li>
-                    </li>
-                </ul>
+                  <ul class="nav navbar-nav navbar-right">
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${admin}</a>        
+                            <ul class="dropdown-menu">
+                                <li><a href="../Login?opt=logout">退出后台</a></li>                          
+                            </ul>
+                            </li>
             </ul>
-        </div>
     </div>
 </nav>
 
@@ -54,14 +52,15 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active1"><a href="../Userm?opt=query&uname=">用户管理</a></li>
-                <li class="active2"><a href="#">博文管理</a></li>
-                <li class="active"><a href="#">评论管理</a></li>
+                <li class="active"><a href="../Postm?opt=query&title=">博文管理</a></li>
+                <li class="active3"><a href="../Commentm?opt=query&ccontent=">评论管理</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">评论管理</h1>
-		<form class="form-inline" role="form" method="post" action="../Index">
-            		<input type=text name="title" placeholder="请输入评论内容关键字">
+		<form class="form-inline" role="form" method="post" action="../Commentm">
+					<input type="hidden" name=opt value=query>					
+            		<input type=text name="ccontent" placeholder="请输入评论内容关键字">
             		<input type=submit class="btn btn-default">
             		</form>
 					<br />
@@ -75,18 +74,18 @@
                         <th>用户</th>
                     </tr>
                     </thead>
-
+					<c:forEach var="comment" items="${clist}">                   
                     <tr>
-                        <td>1</td>
-                        <td>ssss</td>
-                        <td>1月1日</td>
-                        <td>王伟</td>
+                        <td>${comment.cid }</td>
+                        <td>${comment.ccontent }</td>
+                        <td>${comment.created }</td>
+                        <td>${comment.uname }</td>
 
                         <td>
-                            <a class="btn btn-warning" href="#" role="button" >删除</a>
+                            <a class="btn btn-warning" href="../Commentm?opt=delete&cid=${comment.cid }" role="button" >删除</a>
                         </td>
                     </tr>
-
+					</c:forEach>
 
 
             </div>

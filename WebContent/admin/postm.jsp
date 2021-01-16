@@ -38,12 +38,12 @@
             <a class="navbar-brand" href="#">博客系统管理后台</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-
-                <ul class="dropdown-menu">
-                    <li><a href="#">退出登录</a></li>
-                    </li>
-                </ul>
+                       <ul class="nav navbar-nav navbar-right">
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${admin}</a>        
+                            <ul class="dropdown-menu">
+                                <li><a href="../Login?opt=logout">退出后台</a></li>                          
+                            </ul>
+                            </li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <ul class="nav nav-sidebar">
                 <li class="active1"><a href="../Userm?opt=query&uname=">用户管理</a></li>
                 <li class="active"><a href="../Postm?opt=query&title=">博文管理</a></li>
-                <li class="active3"><a href="#">评论管理</a></li>
+                <li class="active3"><a href="../Commentm?opt=query&ccontent=">评论管理</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
