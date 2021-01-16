@@ -67,7 +67,6 @@ public class PostDao {
 	   }
 	public List<Post> queryPostBytitle(String title){
 	   	 String sql="select * from post where title like '%"+title+"%'";
-	   	 System.out.println(sql);
 	   	 return getPost(SQLHelper.executeQueryAsList(sql));
 	   }
 }

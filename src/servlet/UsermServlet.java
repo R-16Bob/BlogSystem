@@ -27,8 +27,6 @@ public class UsermServlet extends HttpServlet {
 		switch (opt) {
 		case "query":
 			List<User> ulist=udao.queryUsersByuname(uname);
-			for(User u:ulist)
-				System.out.println(u);
 			request.getSession().setAttribute("ulist", ulist);
 			response.sendRedirect("admin/userm.jsp");
 			return;
