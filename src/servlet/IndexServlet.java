@@ -19,7 +19,9 @@ public class IndexServlet extends HttpServlet {
 		//与用户自己的uid和uname区分
 		UserDao udao=new UserDao();
 		PostDao pdao=new PostDao();
-		List<Post> allplist=pdao.queryAllPosts();		
+		String title=request.getParameter("title");
+		System.out.println("title: "+title);
+		List<Post> allplist=pdao.queryPostBytitle(title);		
 		request.getSession().setAttribute("allplist",pdao.getArray(allplist));
 		request.getSession().setAttribute("alluname", pdao.queryUnamesByPlist(allplist));
 		request.getSession().setAttribute("size", allplist.size()-1);

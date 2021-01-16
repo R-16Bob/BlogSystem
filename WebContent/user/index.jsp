@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../Index">博客首页</a>
+            <a class="navbar-brand" href="../Index?title=">博客首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -50,7 +50,15 @@
                 </div>
     </div>
 </nav>
-
+<div class="container-fluid">
+<div class="col-sm-11 col-sm-offset-1  ">
+	<h1 class="page-header">博文搜索</h1>
+	<form class="form-inline" role="form" method="post" action="../Index">
+		<input type=text name="title" placeholder="请输入要查询的主题">
+		<input type=submit class="btn btn-default">
+		</form>
+		</div>
+</div>
 <div class="container-fluid">
     <div class="row">
 
@@ -72,7 +80,7 @@
                     plist.length-1%>">
                     <tr>
                         <td>${allplist[count].pid}</td>
-                        <td>${allplist[count].title}</td>
+                        <td><a href="../ShowPost?author=${alluname[count]}&pid=${allplist[count].pid}" target="_blank">${allplist[count].title}</a></td>
                         <td>${allplist[count].created}</td>
                         <td><a href="../Blog?uid=${allplist[count].uid}">${alluname[count]}</a></td>
                     </tr>

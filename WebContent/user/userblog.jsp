@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../Index">博客首页</a>
+            <a class="navbar-brand" href="../Index?title=">博客首页</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -76,7 +76,7 @@
                     <c:forEach var="post" items="${plist}">
                     <tr>
                         <td>${post.pid}</td>
-                        <td>${post.title}</td>
+                        <td><a href="../ShowPost?author=${uname}&pid=${post.pid}" target="_blank">${post.title} </a></td>
                         <td>${post.created}</td>
                         <td>
                             <a class="btn btn-primary" href="../Post?opt=edit&pid=${post.pid}" role="button" >修改</a>

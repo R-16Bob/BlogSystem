@@ -65,4 +65,9 @@ public class PostDao {
 	   	 String sql="select * from post where pid=?";
 	   	 return getPost(SQLHelper.executeQueryByParamsAsList(sql, pid)).get(0);
 	   }
+	public List<Post> queryPostBytitle(String title){
+	   	 String sql="select * from post where title like '%"+title+"%'";
+	   	 System.out.println(sql);
+	   	 return getPost(SQLHelper.executeQueryAsList(sql));
+	   }
 }
