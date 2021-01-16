@@ -1,5 +1,6 @@
-<%@ page language="java" import="java.util.List,entity.Post" pageEncoding="utf-8"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -15,7 +16,7 @@
             overflow:visible !important;
         }
     </style>
-    <title>博客首页</title>
+    <title>博客系统管理后台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -34,64 +35,68 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../Index?title=">博客首页</a>
+            <a class="navbar-brand" href="#">博客系统管理后台</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../Blog?uid=${uid}">我的博客</a></li>
-                        <li><a href="../UserBlog?opt=queryAll">我的博客管理</a></li>
-                        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎，${uname}</a>
-        
-                            <ul class="dropdown-menu">
-                                <li><a href="../Login?opt=logout">退出登录</a></li>
-                                </li>
-                            </ul>
-                    </ul>
-                </div>
+            <ul class="nav navbar-nav navbar-right">
+
+                <ul class="dropdown-menu">
+                    <li><a href="#">退出登录</a></li>
+                    </li>
+                </ul>
+            </ul>
+        </div>
     </div>
 </nav>
-<div class="container-fluid">
-<div class="col-sm-11 col-sm-offset-1  ">
-	<h1 class="page-header">博文搜索</h1>
-	<form class="form-inline" role="form" method="post" action="../Index">
-		<input type=text name="title" placeholder="请输入要查询的主题">
-		<input type=submit class="btn btn-default">
-		</form>
-		</div>
-</div>
+
 <div class="container-fluid">
     <div class="row">
-
-        <div class="col-sm-11 col-sm-offset-1  main">
-            <h1 class="page-header">全部博文</h1>
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="../Userm?opt=query&uname=">用户管理<span class="sr-only">(current)</span></a></li>
+                <li class="active1"><a href="../Postm?opt=query&title=">博文管理<span class="sr-only">(current)</span></a></li>
+                <li class="active1"><a href="#">评论管理<span class="sr-only">(current)</span></a></li>
+			</ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">用户管理</h1>
+			<form class="form-inline" role="form" method="post" action="../Userm">
+            		<input type=text name="uname" placeholder="请输入要查询的用户名">
+            		<input type="hidden" name=opt value="query">
+            		<input type=submit class="btn btn-default">
+            		</form>
+					<br />
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>id</th>
-                        <th>主题</th>
-                        <th>发表时间</th>
-                        <th>作者</th>
+                        <th>用户名</th>
+                        <th>密码</th>
+
                     </tr>
                     </thead>
-                    <tbody> 
-                    <c:if test="${size>0}">                              
-                    <c:forEach var="count" begin="0" end="${size-1}">
+                    <tbody>
+                    <c:forEach var="user" items="${ulist}">
                     <tr>
-                        <td>${allplist[count].pid}</td>
-                        <td><a href="../ShowPost?author=${alluname[count]}&pid=${allplist[count].pid}" target="_blank">${allplist[count].title}</a></td>
-                        <td>${allplist[count].created}</td>
-                        <td><a href="../Blog?uid=${allplist[count].uid}">${alluname[count]}</a></td>
-                    </tr>
-                    </c:forEach>
-                    </c:if>
-                    </tbody>
-                </table>
+                        <td>${user.uid}</td>
+                        <td>${user.uname }</td>
+                        <td>${user.upwd }</td>
+
+                        <td>
+                            <a class="btn btn-success" href="#" role="button" >修改</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" href="../Userm?opt=delete&uid=${user.uid }" role="button" >删除</a>
+                        </td>
+                        </tr>
+                        </c:forEach>
+                        </tbody>
+                        </table>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

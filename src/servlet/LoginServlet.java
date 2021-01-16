@@ -45,8 +45,7 @@ public class LoginServlet extends HttpServlet {
 			if(udao.verify(uname,upwd,uList)) {
 				request.getSession().removeAttribute("aerror");
 				//进入管理后台页面
-				
-				//TODO:
+				response.sendRedirect("Userm?opt=query&uname=");
 			}
 			else {
 				request.getSession().setAttribute("aerror", "用户名或密码错误");

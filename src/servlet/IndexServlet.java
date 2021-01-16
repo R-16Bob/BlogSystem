@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.env.PackageExportImpl;
+
 import dao.PostDao;
 import dao.UserDao;
 import entity.Post;
@@ -20,11 +22,10 @@ public class IndexServlet extends HttpServlet {
 		UserDao udao=new UserDao();
 		PostDao pdao=new PostDao();
 		String title=request.getParameter("title");
-		System.out.println("title: "+title);
 		List<Post> allplist=pdao.queryPostBytitle(title);		
 		request.getSession().setAttribute("allplist",pdao.getArray(allplist));
 		request.getSession().setAttribute("alluname", pdao.queryUnamesByPlist(allplist));
-		request.getSession().setAttribute("size", allplist.size()-1);
+		request.getSession().setAttribute("size", allplist.size());
 		response.sendRedirect("user/index.jsp");	
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

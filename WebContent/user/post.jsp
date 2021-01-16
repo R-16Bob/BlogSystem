@@ -14,13 +14,9 @@
     <title>${post.title}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="https://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="https://v3.bootcss.com/examples/blog/blog.css" rel="stylesheet">
+    <link href="../css/blog.css" rel="stylesheet">
 
    <style>
    

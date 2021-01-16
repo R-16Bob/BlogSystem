@@ -11,7 +11,7 @@ public class CommentDao {
 		String sql="insert into comment(ccontent,uid,pid) values(?,?,?)";
 		return SQLHelper.executeUpdateByParams(sql, ccontent,uid,pid);
 	}
-	public static List<CommentView> getComment(List<Object[]> list){
+	public static List<CommentView> getCommentView(List<Object[]> list){
 		List<CommentView> dlist=new ArrayList<CommentView>();
 		for(Object[] arr:list) {
 			CommentView comment=new CommentView();
@@ -28,7 +28,14 @@ public class CommentDao {
 	
 	public List<CommentView> queryCommentBypid(int pid){	   	
 	   	 String sql="select * from commentView where pid=?";
-	   	 return getComment(SQLHelper.executeQueryByParamsAsList(sql, pid));
+	   	 return getCommentView(SQLHelper.executeQueryByParamsAsList(sql, pid));
 	   }
-	
+	public int deleteCommentsByCid(int cid) {
+    	String sql="delete from comment where cid=?";
+    	return SQLHelper.executeUpdateByParams(sql,cid);
+    }
+	public List<CommentView> queryCommentbyContent(String content){	   	
+	   	 String sql="select * from comment where ccontent like '%"+content+"%'";
+	   	 return getCommentView(SQLHelper.executeQueryByParamsAsList(sql,content));
+	   }
 }

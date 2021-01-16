@@ -73,4 +73,28 @@ public class UserDao {
   	 List<Object[]> cusarr=util.SQLHelper.executeQueryByParamsAsList(sql,uid);
   	 return cusarr.get(0)[1].toString();
 	 }
+	public int deleteUsersByUid(int uid) {
+    	String sql="delete from users where uid=?";
+    	return SQLHelper.executeUpdateByParams(sql, uid);
+    }
+	public int updateUser(int uid,String upwd) {
+    	String sql="update users set upwd=? where uid=?";
+    	return SQLHelper.executeUpdateByParams(sql,upwd,uid);
+    }
+	public static List<User> getUser(List<Object[]> list){
+		List<User> dlist=new ArrayList<User>();
+		for(Object[] arr:list) {
+			User user=new User();
+			user.setUid(Integer.valueOf(arr[0].toString()));
+			user.setUname(arr[1].toString());
+		    user.setUpwd(arr[2].toString());
+			user.setType(Integer.valueOf(arr[3].toString()));
+			dlist.add(user);
+		}
+		return dlist;
+	}
+	public List<User> queryUsersByuname(String uname){	
+	   	 String sql="select * from users where uname like '%"+uname+"%' and type=1";
+	   	 return getUser(SQLHelper.executeQueryAsList(sql));
+	   }
 }
