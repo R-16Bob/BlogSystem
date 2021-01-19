@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.collections.CaseInsensitiveKeyMap;
+import org.omg.CORBA.IRObject;
 
 import dao.PostDao;
 import entity.Post;
@@ -28,17 +29,32 @@ public class PostServlet extends HttpServlet {
 		PostDao pdao=new PostDao();
 		switch (opt) {
 		case "add":
-			pdao.addPost(title, pcontent, uid);
-			response.sendRedirect("UserBlog?opt=queryAll");
-			return;
+			if(pdao.addPost(title, pcontent, uid)>0) {
+				request.getSession().setAttribute("message", "博文发表成功！");
+				response.sendRedirect("user/message.jsp");
+				return;
+			}
+			else {
+				request.getSession().setAttribute("message", "博文发表失败！请保证正文不超过1000字。");
+				response.sendRedirect("user/message.jsp");
+				return;
+			}
+			
 		case "delete":
 			pdao.deletePostByPid(pid);
 			response.sendRedirect("UserBlog?opt=queryAll");
 			return;
 		case "update":
-			pdao.updatePost(pid, title, pcontent);
-			response.sendRedirect("UserBlog?opt=queryAll");
-			return;
+			if(pdao.updatePost(pid, title, pcontent)>0) {
+				request.getSession().setAttribute("message", "博文修改成功！");
+				response.sendRedirect("user/message.jsp");
+				return;
+			}
+			else {
+				request.getSession().setAttribute("message", "博文修改失败！请保证正文不超过1000字。");
+				response.sendRedirect("user/message.jsp");
+				return;
+			}
 		case "edit":
 			//先跳到一个编辑页面
 			Post post=pdao.queryPostBypid(pid);

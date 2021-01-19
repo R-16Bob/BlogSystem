@@ -1,0 +1,45 @@
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `uname` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `upwd` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `type` int(11) NOT NULL DEFAULT '1' COMMENT '1或2',
+  PRIMARY KEY (`uid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post`  (
+  `pid` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pcontent` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,  
+  `uid` int(11) NOT NULL,
+  PRIMARY KEY (`pid`) USING BTREE,
+  INDEX `uid`(`uid`) USING BTREE,
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) on delete cascade
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment`  (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `ccontent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+  `uid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  PRIMARY KEY (`cid`) USING BTREE,
+  INDEX `1`(`uid`) USING BTREE,
+  INDEX `2`(`pid`) USING BTREE,
+  CONSTRAINT `1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) on delete cascade,
+  CONSTRAINT `2` FOREIGN KEY (`pid`) REFERENCES `post` (`pid`) on delete cascade
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+insert into users(uname,upwd,type) values('admin','123456',2);
+insert into users(uname,upwd) values('bob','123456');
+insert into post(title,pcontent,uid) values('测试','这是一篇测试文章。',2);
+insert into comment(ccontent,uid,pid) values('沙发',2,1);
+select pid,title,uid from post；
+//视图
+create view commentView as
+select cid,ccontent,created,u.uid,pid,uname
+from users u,comment c
+where u.uid=c.uid
