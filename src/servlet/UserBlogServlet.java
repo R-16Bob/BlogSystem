@@ -21,8 +21,6 @@ public class UserBlogServlet extends HttpServlet {
 			response.sendRedirect("user/userblog.jsp");
 			break;
 
-		default:
-			break;
 		}
 		
 	}

@@ -18,7 +18,6 @@ import entity.Post;
 @WebServlet("/Index")
 public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//与用户自己的uid和uname区分
 		UserDao udao=new UserDao();
 		PostDao pdao=new PostDao();
 		String title=request.getParameter("title");
